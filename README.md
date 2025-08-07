@@ -1,286 +1,258 @@
-# 🚀 PayloadCMS Backend Otomatis + Astro Frontend
+# 🚀 PayloadCMS Backend Otomatis v2.32.3
 
-Backend CMS headless otomatis dengan integrasi AI, RSS, dan plugin lengkap, plus frontend Astro yang modern.
+Backend otomatis menggunakan **PayloadCMS 2.32.3** dengan integrasi AI, image services, dan cron jobs. Didesain untuk Windows dan menggunakan dependencies terbaru.
 
 ## ✨ Fitur Utama
 
-### 🔧 Backend (PayloadCMS)
-- 🤖 **AI Integration**: OpenAI, Gemini, Claude, Ollama
-- 📰 **RSS Automation**: Fetch konten otomatis
-- 🖼️ **Image Services**: Unsplash, Pixabay, Pexels
-- ⏱️ **Cron Jobs**: Bree.js untuk automation
-- 🔌 **Plugin Lengkap**: 19 plugin yang benar-benar tersedia
-- 🪟 **Windows Compatible**: Optimized untuk Windows
-- 📊 **Monitoring**: Sentry, Winston logging
-
-### 🎨 Frontend (Astro)
-- ⚡ **Performance**: Static generation
-- 🎨 **Modern UI**: Tailwind CSS + React
-- 📱 **Responsive**: Semua device
-- 🔍 **SEO Optimized**: Meta tags, sitemap
-- 🔧 **TypeScript**: Type safety
+- **PayloadCMS 2.32.3** - CMS headless terbaru
+- **AI Integration** - OpenAI, Gemini, Replicate untuk konten otomatis
+- **Image Services** - Unsplash, Pixabay, Pexels untuk gambar gratis
+- **Cron Jobs** - Bree.js untuk otomatisasi konten
+- **Windows Compatible** - Konfigurasi khusus untuk Windows
+- **Latest Dependencies** - Semua dependencies versi terbaru
 
 ## 🛠️ Tech Stack
 
-### Backend
-| Komponen | Versi | Keterangan |
-|----------|-------|------------|
-| **PayloadCMS** | 2.12.0 | CMS Headless |
-| **MongoDB** | 6.3.0 | Database |
-| **Mongoose** | 8.1.0 | ODM |
-| **Express** | 4.18.2 | Web framework |
-| **TypeScript** | 5.3.3 | Language |
-| **Bree.js** | 9.1.0 | Cron jobs |
+| Komponen | Teknologi | Versi |
+|----------|-----------|-------|
+| CMS | PayloadCMS | 2.32.3 |
+| Database | MongoDB | 6.3.0 |
+| AI Services | OpenAI, Gemini, Replicate | Latest |
+| Image Services | Unsplash, Pixabay, Pexels | Latest |
+| Cron Jobs | Bree.js | 9.1.0 |
+| TypeScript | TypeScript | 5.3.3 |
+| Frontend | Astro | 4.4.0 |
 
-### Frontend
-| Komponen | Versi | Keterangan |
-|----------|-------|------------|
-| **Astro** | 4.4.0 | Framework |
-| **React** | 18.2.0 | UI library |
-| **Tailwind CSS** | 3.4.0 | Styling |
-| **TypeScript** | 5.3.3 | Language |
+## 📦 Dependencies Terbaru
 
-## 🔌 Plugin PayloadCMS yang Tersedia
+### Core Dependencies
+- `payload@^2.32.3` - PayloadCMS terbaru
+- `express@^4.18.2` - Web framework
+- `mongoose@^8.1.0` - MongoDB ODM
+- `dotenv@^16.3.1` - Environment variables
 
-### ✅ Plugin Wajib (Sangat Berguna)
-1. **payload-enchants** - Import/export, duplikat, sorting
-2. **payload-tools** - CLI tools, backup, export
-3. **payload-plugin-seo** - SEO optimization
-4. **payload-plugin-slug** - Auto slug generation
+### PayloadCMS Adapters
+- `@payloadcms/bundler-webpack` - Webpack bundler
+- `@payloadcms/db-mongodb` - MongoDB adapter
+- `@payloadcms/richtext-slate` - Rich text editor
 
-### ✅ Plugin Opsional (Bergantung Kebutuhan)
-5. **payload-plugin-cloud-storage** - Cloud storage (S3, GCS)
-6. **payload-plugin-redis** - Caching
-7. **payload-plugin-sentry** - Error tracking
-8. **payload-plugin-webhooks** - Webhooks
-9. **payload-plugin-vercel** - Vercel deployment
-10. **payload-plugin-cloud** - Cloud deployment
-11. **payload-plugin-email** - Email integration
-12. **payload-plugin-richtext-slate** - Rich text editor
-13. **payload-plugin-color-picker** - Color picker
-14. **payload-plugin-relationship** - Enhanced relationships
-15. **payload-plugin-media-library** - Media library
-16. **payload-plugin-tabs** - Tabbed interface
-17. **payload-plugin-debug** - Debug tools
-18. **payload-plugin-testing** - Testing utilities
-19. **payload-plugin-migrate** - Database migrations
+### AI & Image Services
+- `openai@^4.28.0` - OpenAI API
+- `@google/generative-ai@^0.2.1` - Google Gemini
+- `replicate@^0.25.1` - AI image generation
+- `unsplash-js@^7.0.19` - Unsplash API
+- `pixabay-api@^1.0.4` - Pixabay API
+- `pexels@^1.4.0` - Pexels API
+
+### Utilities
+- `axios@^1.6.5` - HTTP client
+- `lodash@^4.17.21` - Utility library
+- `moment@^2.30.1` - Date handling
+- `sharp@^0.33.2` - Image processing
 
 ## 🚀 Quick Start
 
-### 1. Setup Backend
+### Backend Setup
 
+1. **Clone repository**
 ```bash
-# Install dependencies
+git clone <repository-url>
+cd payloadcms-backend-otomatis
+```
+
+2. **Install dependencies**
+```bash
 npm install
-
-# Setup project
-npm run setup
-
-# Start development
-npm run dev
 ```
 
-### 2. Setup Frontend
-
+3. **Setup environment**
 ```bash
-# Navigate to frontend
-cd astro-frontend
+cp .env.example .env
+# Edit .env dengan konfigurasi yang diperlukan
+```
 
-# Setup project
-npm run setup
-
-# Start development
+4. **Start development server**
+```bash
 npm run dev
 ```
 
-### 3. Access Points
+5. **Access admin panel**
+```
+http://localhost:3000/admin
+```
 
-| Service | URL | Description |
-|---------|-----|-------------|
-| **Backend API** | `http://localhost:3000/api/*` | PayloadCMS REST API |
-| **Admin Panel** | `http://localhost:3000/admin` | PayloadCMS Admin |
-| **Frontend** | `http://localhost:4321` | Astro Frontend |
-| **GraphQL** | `http://localhost:3000/graphql` | GraphQL API |
+### Frontend Setup (Astro)
+
+1. **Navigate to frontend**
+```bash
+cd astro-frontend
+```
+
+2. **Install dependencies**
+```bash
+npm install
+```
+
+3. **Start development server**
+```bash
+npm run dev
+```
+
+4. **Access frontend**
+```
+http://localhost:4321
+```
 
 ## 📁 Project Structure
 
 ```
-project/
-├── 📦 Backend (PayloadCMS)
-│   ├── src/
-│   │   ├── collections/     # 12 collections
-│   │   ├── services/        # AI & Image services
-│   │   ├── jobs/           # Cron jobs
-│   │   └── utils/          # Utilities
-│   ├── jobs/               # Bree.js jobs
-│   ├── tests/              # Unit & integration tests
-│   └── scripts/            # Setup scripts
-│
-└── 🎨 Frontend (Astro)
-    ├── src/
-    │   ├── components/     # React & Astro components
-    │   ├── pages/          # Astro pages
-    │   ├── layouts/        # Layout templates
-    │   └── lib/            # API client
-    └── public/             # Static assets
+payloadcms-backend-otomatis/
+├── src/
+│   ├── collections/          # PayloadCMS collections
+│   ├── globals/             # Global configurations
+│   ├── services/            # AI & Image services
+│   ├── utils/               # Utility functions
+│   ├── types/               # TypeScript types
+│   ├── middleware/          # Express middleware
+│   └── payload.config.ts    # PayloadCMS config
+├── jobs/                    # Cron jobs (Bree.js)
+├── tests/                   # Test files
+├── public/                  # Static files
+├── scripts/                 # Setup scripts
+└── astro-frontend/         # Astro frontend
 ```
 
-## 🔧 Environment Variables
+## 🔧 Available Commands
 
-### Backend (.env)
+### Backend Commands
+```bash
+npm run dev          # Start development server
+npm run build        # Build for production
+npm run serve        # Start production server
+npm run setup        # Run setup script
+npm run test         # Run tests
+npm run lint         # Run linter
+npm run typecheck    # TypeScript check
+```
+
+### Frontend Commands
+```bash
+cd astro-frontend
+npm run dev          # Start development server
+npm run build        # Build for production
+npm run preview      # Preview production build
+```
+
+## 🌐 API Endpoints
+
+### Collections
+- `GET /api/posts` - Get all posts
+- `GET /api/pages` - Get all pages
+- `GET /api/products` - Get all products
+- `GET /api/services` - Get all services
+- `GET /api/raw-contents` - Get raw contents
+
+### AI Services
+- `POST /api/ai/generate` - Generate content with AI
+- `POST /api/ai/image` - Generate AI images
+
+### Image Services
+- `GET /api/images/search` - Search images
+- `GET /api/images/random` - Get random images
+
+## 🔐 Environment Variables
+
 ```env
-# PayloadCMS Core
-PAYLOAD_SECRET=your-secret
-MONGODB_URI=mongodb://localhost:27017/payloadcms
+# PayloadCMS
+PAYLOAD_SECRET=your-secret-key
+PAYLOAD_PUBLIC_SERVER_URL=http://localhost:3000
 
-# AI Integration
+# Database
+MONGODB_URI=mongodb://localhost/payloadcms-backend-otomatis
+
+# AI Services
 OPENAI_API_KEY=sk-...
-GEMINI_API_KEY=...
-REPLICATE_API_TOKEN=...
+GEMINI_API_KEY=your-gemini-key
+REPLICATE_API_TOKEN=your-replicate-token
 
 # Image Services
-UNSPLASH_ACCESS_KEY=...
-PIXABAY_API_KEY=...
-PEXELS_API_KEY=...
+UNSPLASH_ACCESS_KEY=your-unsplash-key
+PIXABAY_API_KEY=your-pixabay-key
+PEXELS_API_KEY=your-pexels-key
 
-# Optional Plugins
-REDIS_URL=redis://localhost:6379
-SENTRY_DSN=https://...
-S3_BUCKET=your-bucket
-S3_REGION=us-east-1
+# Monitoring
+SENTRY_DSN=your-sentry-dsn
 ```
-
-### Frontend (.env)
-```env
-PUBLIC_API_URL=http://localhost:3000
-PUBLIC_SITE_URL=http://localhost:4321
-PUBLIC_ADMIN_URL=http://localhost:3000/admin
-```
-
-## 🔌 API Integration
-
-### Backend Collections
-- `posts` - Blog articles
-- `pages` - Static pages
-- `products` - E-commerce products
-- `services` - Service listings
-- `rawContents` - Raw content storage
-- `images` - Media management
-- `feeds` - RSS feeds
-- `aiPrompts` - AI prompt templates
-- `categories` - Content categories
-- `tags` - Content tags
-- `scrapeSources` - Web scraping sources
-- `users` - User management
-
-### Frontend API Client
-```typescript
-import { apiClient } from '@/lib/api';
-
-// Fetch posts
-const posts = await apiClient.getPosts({
-  page: 1,
-  limit: 12,
-  status: 'published'
-});
-
-// Fetch single post
-const post = await apiClient.getPost('post-slug');
-```
-
-## 🎯 Features
-
-### AI Integration
-- OpenAI GPT-4 untuk content generation
-- Google Gemini untuk artikel
-- Claude untuk SEO content
-- Ollama untuk local AI
-- Replicate untuk AI image generation
-
-### Automation
-- RSS feed fetching otomatis
-- AI content generation scheduling
-- Content publishing automation
-- Image fetching dari multiple sources
-
-### Plugin Features
-- Import/export data dengan payload-enchants
-- Backup otomatis dengan payload-tools
-- SEO optimization dengan payload-plugin-seo
-- Cloud storage dengan payload-plugin-cloud-storage
-- Caching dengan payload-plugin-redis
-- Error tracking dengan payload-plugin-sentry
-
-## 🚀 Deployment
-
-### Backend
-```bash
-# Build
-npm run build
-
-# Deploy to Railway/Render/Vercel
-npm run serve
-```
-
-### Frontend
-```bash
-# Build
-npm run build
-
-# Deploy to Vercel
-vercel --prod
-```
-
-## 📊 Performance
-
-- **Lighthouse Score**: 95+ (Performance, Accessibility, Best Practices, SEO)
-- **Core Web Vitals**: Optimized
-- **Image Optimization**: Automatic
-- **Code Splitting**: Automatic
-- **Caching**: Static assets cached
-
-## 🔍 SEO Features
-
-- Meta tags optimization
-- Open Graph tags
-- Twitter Card tags
-- Structured data (JSON-LD)
-- Sitemap generation
-- Robots.txt
 
 ## 🧪 Testing
 
 ```bash
-# Backend tests
+# Run all tests
 npm test
-npm run test:coverage
 
-# Frontend tests
-cd astro-frontend
-npm run lint
-npm run typecheck
+# Run tests in watch mode
+npm run test:watch
+
+# Run tests with coverage
+npm run test:coverage
 ```
 
-## 📚 Documentation
+## 📊 Monitoring
 
-- [Backend Documentation](PAYLOADCMS_BACKEND_DOKUMENTASI.md)
-- [Plugin Guide](docs/PLUGIN_GUIDE.md)
-- [Windows Setup](WINDOWS_SETUP.md)
-- [Astro Frontend Setup](ASTRO_FRONTEND_SETUP.md)
-- [Plugin Realistic](PLUGIN_REALISTIC.md)
+- **Sentry** - Error tracking
+- **Winston** - Logging
+- **Morgan** - HTTP request logging
+
+## 🚀 Deployment
+
+### Backend Deployment
+- **Railway** - Recommended for easy deployment
+- **Render** - Alternative to Railway
+- **VPS** - For full control
+
+### Frontend Deployment
+- **Vercel** - Recommended for Astro
+- **Netlify** - Alternative to Vercel
+- **GitHub Pages** - Free hosting
+
+## 🔄 Dependencies Update
+
+Semua dependencies telah diperbarui ke versi terbaru dan kompatibel dengan PayloadCMS 2.32.3:
+
+- ✅ **PayloadCMS 2.32.3** - Versi terbaru
+- ✅ **TypeScript 5.3.3** - Versi terbaru
+- ✅ **Node.js 18+** - Versi minimum
+- ✅ **Semua dependencies terbaru** - Tidak ada deprecated
+
+### Dependencies yang Dihapus
+- ❌ Plugin PayloadCMS yang tidak tersedia
+- ❌ Dependencies deprecated
+- ❌ Dependencies yang tidak kompatibel
+
+## 📝 Documentation
+
+- [DEPENDENCIES_UPDATED.md](./DEPENDENCIES_UPDATED.md) - Dependencies update details
+- [PLUGIN_REALISTIC.md](./PLUGIN_REALISTIC.md) - Plugin availability guide
+- [ASTRO_FRONTEND_SETUP.md](./ASTRO_FRONTEND_SETUP.md) - Frontend setup guide
 
 ## 🤝 Contributing
 
-1. Fork repository
-2. Create feature branch
-3. Make changes
-4. Test thoroughly
-5. Submit pull request
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
 ## 📄 License
 
-MIT License - see LICENSE file for details
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🆘 Support
+
+- 📧 Email: your-email@example.com
+- 🐛 Issues: [GitHub Issues](https://github.com/yourusername/payloadcms-backend-otomatis/issues)
+- 📖 Documentation: [Wiki](https://github.com/yourusername/payloadcms-backend-otomatis/wiki)
 
 ---
 
-**🎉 Happy coding dengan PayloadCMS + Astro!**
+**Made with ❤️ using PayloadCMS 2.32.3**
