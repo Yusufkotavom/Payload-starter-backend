@@ -52,7 +52,7 @@
     "payload-plugin-testing": "^1.0.0",
     "payload-plugin-migrate": "^1.0.0",
     
-    // AI & Image Integration
+    // AI & Image Integration - Versi Terbaru
     "openai": "^4.28.0",
     "@google/generative-ai": "^0.2.1",
     "replicate": "^0.25.1",
@@ -73,7 +73,7 @@
     "redis": "^4.6.12",
     "mongodb": "^6.3.0",
     
-    // Utilities
+    // Utilities - Versi Terbaru
     "axios": "^1.6.5",
     "lodash": "^4.17.21",
     "moment": "^2.30.1",
@@ -102,7 +102,7 @@
     "@types/node-cron": "^3.0.11",
     "@types/jest": "^29.5.11",
     
-    // Development Tools
+    // Development Tools - Versi Terbaru
     "typescript": "^5.3.3",
     "ts-node": "^10.9.2",
     "nodemon": "^3.0.3",
