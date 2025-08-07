@@ -1,0 +1,139 @@
+{
+  "name": "payloadcms-backend-otomatis",
+  "version": "1.0.0",
+  "description": "PayloadCMS Backend Otomatis dengan AI Integration dan Plugin Lengkap",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "payload dev",
+    "build": "payload build",
+    "serve": "payload serve",
+    "migrate": "payload migrate",
+    "migrate:create": "payload migrate:create",
+    "migrate:reset": "payload migrate:reset",
+    "migrate:fresh": "payload migrate:fresh",
+    "seed": "payload seed",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "payload": "^2.0.0",
+    "express": "^4.18.2",
+    "mongoose": "^7.5.0",
+    "dotenv": "^16.3.1",
+    
+    // Plugin Wajib
+    "payload-enchants": "^1.0.0",
+    "payload-tools": "^1.0.0",
+    
+    // Plugin Rekomendasi
+    "payload-plugin-cloud-storage": "^1.0.0",
+    "payload-plugin-seo": "^1.0.0",
+    "payload-plugin-cloud": "^1.0.0",
+    "payload-plugin-vercel": "^1.0.0",
+    "payload-plugin-redis": "^1.0.0",
+    "payload-plugin-sentry": "^1.0.0",
+    "payload-plugin-slug": "^1.0.0",
+    "payload-plugin-richtext-slate": "^1.0.0",
+    "payload-plugin-email": "^1.0.0",
+    "payload-plugin-webhooks": "^1.0.0",
+    
+    // Plugin UI/UX
+    "payload-plugin-color-picker": "^1.0.0",
+    "payload-plugin-relationship": "^1.0.0",
+    "payload-plugin-media-library": "^1.0.0",
+    "payload-plugin-tabs": "^1.0.0",
+    
+    // AI & Image Integration
+    "openai": "^4.20.0",
+    "@google/generative-ai": "^0.1.0",
+    "replicate": "^0.22.0",
+    "unsplash-js": "^7.0.19",
+    "pixabay-api": "^1.0.4",
+    "pexels": "^1.4.0",
+    
+    // Cron Jobs & Scheduling
+    "bree": "^9.0.0",
+    "node-cron": "^3.0.2",
+    
+    // RSS & Scraping
+    "rss-parser": "^3.13.0",
+    "cheerio": "^1.0.0-rc.12",
+    "puppeteer": "^21.0.0",
+    
+    // Database & Cache
+    "redis": "^4.6.8",
+    "mongodb": "^5.7.0",
+    
+    // Utilities
+    "axios": "^1.5.0",
+    "lodash": "^4.17.21",
+    "moment": "^2.29.4",
+    "slugify": "^1.6.6",
+    "sharp": "^0.32.5",
+    "multer": "^1.4.5-lts.1",
+    
+    // Email & Notifications
+    "nodemailer": "^6.9.5",
+    "twilio": "^4.15.0",
+    
+    // Monitoring & Logging
+    "@sentry/node": "^7.77.0",
+    "winston": "^3.10.0",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.5.0",
+    "@types/express": "^4.17.17",
+    "@types/lodash": "^4.14.197",
+    "@types/moment": "^2.13.0",
+    "@types/multer": "^1.4.7",
+    "@types/nodemailer": "^6.4.9",
+    "@types/morgan": "^1.9.4",
+    "@types/node-cron": "^3.0.7",
+    "@types/jest": "^29.5.4",
+    
+    // Plugin Development
+    "payload-plugin-debug": "^1.0.0",
+    "payload-plugin-testing": "^1.0.0",
+    "payload-plugin-migrate": "^1.0.0",
+    
+    // Development Tools
+    "typescript": "^5.1.6",
+    "ts-node": "^10.9.1",
+    "nodemon": "^3.0.1",
+    "eslint": "^8.47.0",
+    "@typescript-eslint/eslint-plugin": "^6.4.0",
+    "@typescript-eslint/parser": "^6.4.0",
+    "jest": "^29.6.2",
+    "ts-jest": "^29.1.1",
+    "supertest": "^6.3.3",
+    "@types/supertest": "^2.0.12"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "keywords": [
+    "payloadcms",
+    "cms",
+    "headless",
+    "ai",
+    "automation",
+    "content-management",
+    "typescript",
+    "mongodb"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/payloadcms-backend-otomatis.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/payloadcms-backend-otomatis/issues"
+  },
+  "homepage": "https://github.com/yourusername/payloadcms-backend-otomatis#readme"
+}
