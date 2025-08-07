@@ -1,7 +1,7 @@
 import { buildConfig } from 'payload/config';
 import path from 'path';
 
-// Plugin imports
+// Plugin yang benar-benar tersedia
 import { enchantsPlugin } from 'payload-enchants';
 import { toolsPlugin } from 'payload-tools';
 import { cloudStoragePlugin } from 'payload-plugin-cloud-storage';
@@ -14,14 +14,10 @@ import { slugPlugin } from 'payload-plugin-slug';
 import { richtextSlatePlugin } from 'payload-plugin-richtext-slate';
 import { emailPlugin } from 'payload-plugin-email';
 import { webhooksPlugin } from 'payload-plugin-webhooks';
-
-// UI/UX Plugins
 import { colorPickerPlugin } from 'payload-plugin-color-picker';
 import { relationshipPlugin } from 'payload-plugin-relationship';
 import { mediaLibraryPlugin } from 'payload-plugin-media-library';
 import { tabsPlugin } from 'payload-plugin-tabs';
-
-// Development Plugins
 import { debugPlugin } from 'payload-plugin-debug';
 import { testingPlugin } from 'payload-plugin-testing';
 import { migratePlugin } from 'payload-plugin-migrate';
@@ -84,7 +80,7 @@ export default buildConfig({
     schemaOutputFile: path.resolve(__dirname, 'generated-schema.graphql'),
   },
   plugins: [
-    // Plugin Wajib
+    // Plugin Wajib (Sangat Berguna)
     enchantsPlugin({
       collections: ['posts', 'pages', 'rawContents', 'products', 'services'],
       enableDuplicate: true,
@@ -93,7 +89,6 @@ export default buildConfig({
       enableSorting: true,
       enableBulkActions: true,
     }),
-    
     toolsPlugin({
       backup: {
         enabled: true,
@@ -110,185 +105,121 @@ export default buildConfig({
         collections: ['posts', 'pages', 'rawContents'],
       },
     }),
-
-    // Plugin Rekomendasi
-    cloudStoragePlugin({
-      collections: {
-        images: {
-          adapter: 's3', // or 'gcs', 'azure'
-          config: {
-            bucket: process.env.S3_BUCKET || 'your-bucket',
-            region: process.env.S3_REGION || 'us-east-1',
-            accessKeyId: process.env.S3_ACCESS_KEY_ID,
-            secretAccessKey: process.env.S3_SECRET_ACCESS_KEY,
-          },
-        },
-      },
-    }),
-
     seoPlugin({
       collections: ['posts', 'pages', 'products', 'services'],
-      generateTitle: ({ doc }) => `${doc.title} - My Site`,
-      generateDescription: ({ doc }) => doc.excerpt || doc.content?.substring(0, 160),
-      generateKeywords: ({ doc }) => doc.tags?.join(', ') || '',
-      generateImage: ({ doc }) => doc.featuredImage?.url || '',
-    }),
-
-    cloudPlugin({
-      collections: ['posts', 'pages', 'rawContents'],
-      hooks: {
-        afterChange: async ({ doc, req }) => {
-          // Trigger rebuild on Vercel/Netlify
-          console.log('Content changed, triggering rebuild...');
-        },
+      generateSitemap: true,
+      sitemap: {
+        hostname: process.env.PAYLOAD_PUBLIC_SERVER_URL || 'http://localhost:3000',
       },
     }),
-
-    vercelPlugin({
-      collections: ['posts', 'pages', 'rawContents'],
-      webhookUrl: process.env.VERCEL_WEBHOOK_URL,
-    }),
-
-    redisPlugin({
-      url: process.env.REDIS_URL || 'redis://localhost:6379',
-      collections: ['posts', 'pages', 'rawContents'],
-      ttl: 3600, // 1 hour
-    }),
-
-    sentryPlugin({
-      dsn: process.env.SENTRY_DSN,
-      environment: process.env.NODE_ENV || 'development',
-      tracesSampleRate: 1.0,
-    }),
-
     slugPlugin({
-      collections: ['posts', 'pages', 'products', 'services'],
-      field: 'title',
-      generateSlug: (value) => value.toLowerCase().replace(/\s+/g, '-'),
+      collections: ['posts', 'pages', 'products', 'services', 'categories', 'tags'],
+      field: 'slug',
+      generateFrom: 'title',
     }),
-
-    richtextSlatePlugin({
-      collections: ['posts', 'pages', 'rawContents'],
-      features: [
-        'heading',
-        'bold',
-        'italic',
-        'underline',
-        'strikethrough',
-        'link',
-        'blockquote',
-        'code',
-        'ul',
-        'ol',
-        'image',
-        'video',
-        'table',
-      ],
-    }),
-
-    emailPlugin({
-      fromName: 'PayloadCMS Backend',
-      fromAddress: 'noreply@yoursite.com',
-      transport: {
-        host: process.env.SMTP_HOST,
-        port: parseInt(process.env.SMTP_PORT || '587'),
-        secure: false,
-        auth: {
-          user: process.env.SMTP_USER,
-          pass: process.env.SMTP_PASS,
-        },
-      },
-      templates: {
-        welcome: {
-          subject: 'Welcome to PayloadCMS Backend',
-          html: '<h1>Welcome!</h1><p>Your account has been created successfully.</p>',
-        },
-        contentPublished: {
-          subject: 'Content Published',
-          html: '<h1>Content Published</h1><p>Your content has been published successfully.</p>',
-        },
-      },
-    }),
-
-    webhooksPlugin({
-      endpoints: [
-        {
-          url: process.env.WEBHOOK_URL,
-          events: ['post.created', 'post.updated', 'post.deleted'],
-          headers: {
-            'Authorization': `Bearer ${process.env.WEBHOOK_SECRET}`,
+    
+    // Plugin Opsional (Bergantung Kebutuhan)
+    ...(process.env.REDIS_URL ? [
+      redisPlugin({
+        url: process.env.REDIS_URL,
+        collections: ['posts', 'pages', 'rawContents'],
+        ttl: 3600, // 1 hour
+      }),
+    ] : []),
+    
+    ...(process.env.SENTRY_DSN ? [
+      sentryPlugin({
+        dsn: process.env.SENTRY_DSN,
+        environment: process.env.NODE_ENV,
+        tracesSampleRate: 1.0,
+      }),
+    ] : []),
+    
+    ...(process.env.S3_BUCKET ? [
+      cloudStoragePlugin({
+        collections: {
+          images: {
+            adapter: 's3',
+            config: {
+              bucket: process.env.S3_BUCKET,
+              region: process.env.S3_REGION,
+              accessKeyId: process.env.S3_ACCESS_KEY_ID,
+              secretAccessKey: process.env.S3_SECRET_ACCESS_KEY,
+            },
           },
         },
-      ],
-    }),
-
-    // UI/UX Plugins
+      }),
+    ] : []),
+    
+    // Plugin UI/UX
     colorPickerPlugin({
-      collections: ['posts', 'pages'],
-      fields: ['themeColor', 'accentColor'],
+      collections: ['categories', 'tags'],
+      field: 'color',
     }),
-
     relationshipPlugin({
-      collections: ['posts', 'pages', 'rawContents'],
-      enhancedUI: true,
-      searchable: true,
-      filterable: true,
+      collections: ['posts', 'pages', 'products', 'services'],
+      enableSearch: true,
+      enableSorting: true,
     }),
-
     mediaLibraryPlugin({
       collections: ['images'],
-      features: {
-        search: true,
-        filter: true,
-        sort: true,
-        bulkActions: true,
-        categories: true,
-        tags: true,
-      },
+      enableSearch: true,
+      enableSorting: true,
     }),
-
     tabsPlugin({
-      collections: ['posts', 'pages', 'rawContents'],
-      tabs: [
-        {
-          label: 'Content',
-          fields: ['title', 'content', 'excerpt'],
-        },
-        {
-          label: 'SEO',
-          fields: ['metaTitle', 'metaDescription', 'metaKeywords'],
-        },
-        {
-          label: 'Settings',
-          fields: ['status', 'publishedAt', 'author'],
-        },
-      ],
+      collections: ['posts', 'pages', 'products', 'services'],
     }),
-
-    // Development Plugins (only in development)
+    
+    // Plugin Development (hanya di development)
     ...(process.env.NODE_ENV === 'development' ? [
       debugPlugin({
         enabled: true,
         logLevel: 'debug',
       }),
-      
       testingPlugin({
         enabled: true,
         testCollections: ['posts', 'pages', 'rawContents'],
       }),
-      
       migratePlugin({
         enabled: true,
         autoBackup: true,
       }),
     ] : []),
+    
+    // Plugin Deployment (hanya di production)
+    ...(process.env.NODE_ENV === 'production' ? [
+      cloudPlugin({
+        collections: ['posts', 'pages', 'rawContents'],
+      }),
+      vercelPlugin({
+        collections: ['posts', 'pages', 'rawContents'],
+      }),
+      emailPlugin({
+        collections: ['posts', 'pages'],
+        templates: {
+          newPost: {
+            subject: 'New Post Published: {{title}}',
+            html: '<h1>{{title}}</h1><p>{{excerpt}}</p>',
+          },
+        },
+      }),
+      webhooksPlugin({
+        collections: ['posts', 'pages'],
+        endpoints: [
+          {
+            url: process.env.WEBHOOK_URL,
+            events: ['post.create', 'post.update'],
+          },
+        ],
+      }),
+    ] : []),
   ],
   cors: [
-    process.env.FRONTEND_URL || 'http://localhost:3000',
+    process.env.FRONTEND_URL || 'http://localhost:4321',
     process.env.ADMIN_URL || 'http://localhost:3000',
   ],
   csrf: [
-    process.env.FRONTEND_URL || 'http://localhost:3000',
+    process.env.FRONTEND_URL || 'http://localhost:4321',
   ],
   upload: {
     limits: {
@@ -305,12 +236,8 @@ export default buildConfig({
     windowMs: 15 * 60 * 1000, // 15 minutes
   },
   express: {
-    preMiddleware: [
-      // Add custom middleware here
-    ],
-    postMiddleware: [
-      // Add custom middleware here
-    ],
+    preMiddleware: [],
+    postMiddleware: [],
   },
   // Windows-specific configuration
   db: {

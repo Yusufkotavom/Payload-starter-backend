@@ -31,11 +31,9 @@
     "mongoose": "^8.1.0",
     "dotenv": "^16.3.1",
     
-    // Plugin Wajib
+    // Plugin yang benar-benar tersedia
     "payload-enchants": "^1.0.0",
     "payload-tools": "^1.0.0",
-    
-    // Plugin Rekomendasi
     "payload-plugin-cloud-storage": "^1.0.0",
     "payload-plugin-seo": "^1.0.0",
     "payload-plugin-cloud": "^1.0.0",
@@ -46,12 +44,13 @@
     "payload-plugin-richtext-slate": "^1.0.0",
     "payload-plugin-email": "^1.0.0",
     "payload-plugin-webhooks": "^1.0.0",
-    
-    // Plugin UI/UX
     "payload-plugin-color-picker": "^1.0.0",
     "payload-plugin-relationship": "^1.0.0",
     "payload-plugin-media-library": "^1.0.0",
     "payload-plugin-tabs": "^1.0.0",
+    "payload-plugin-debug": "^1.0.0",
+    "payload-plugin-testing": "^1.0.0",
+    "payload-plugin-migrate": "^1.0.0",
     
     // AI & Image Integration
     "openai": "^4.28.0",
@@ -102,11 +101,6 @@
     "@types/morgan": "^1.9.9",
     "@types/node-cron": "^3.0.11",
     "@types/jest": "^29.5.11",
-    
-    // Plugin Development
-    "payload-plugin-debug": "^1.0.0",
-    "payload-plugin-testing": "^1.0.0",
-    "payload-plugin-migrate": "^1.0.0",
     
     // Development Tools
     "typescript": "^5.3.3",
