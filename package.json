@@ -1,0 +1,113 @@
+{
+  "name": "payloadcms-backend-otomatis",
+  "version": "1.0.0",
+  "description": "PayloadCMS Backend Otomatis dengan AI Integration dan Plugin Lengkap",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development payload dev",
+    "build": "cross-env NODE_ENV=production payload build",
+    "serve": "cross-env NODE_ENV=production payload serve",
+    "migrate": "cross-env NODE_ENV=production payload migrate",
+    "migrate:create": "cross-env NODE_ENV=production payload migrate:create",
+    "migrate:reset": "cross-env NODE_ENV=production payload migrate:reset",
+    "migrate:fresh": "cross-env NODE_ENV=production payload migrate:fresh",
+    "seed": "cross-env NODE_ENV=development payload seed",
+    "test": "cross-env NODE_ENV=test jest",
+    "test:watch": "cross-env NODE_ENV=test jest --watch",
+    "test:coverage": "cross-env NODE_ENV=test jest --coverage",
+    "lint": "eslint . --ext .ts,.tsx",
+    "lint:fix": "eslint . --ext .ts,.tsx --fix",
+    "typecheck": "tsc --noEmit",
+    "setup": "node scripts/setup.js",
+    "start": "cross-env NODE_ENV=production node dist/index.js",
+    "cron": "cross-env NODE_ENV=production ts-node src/cron.ts",
+    "cron:dev": "cross-env NODE_ENV=development ts-node src/cron.ts",
+    "dev:full": "concurrently \"npm run dev\" \"npm run cron:dev\"",
+    "start:full": "concurrently \"npm run start\" \"npm run cron\""
+  },
+  "dependencies": {
+    "payload": "^2.32.3",
+    "express": "^4.18.2",
+    "mongoose": "^8.1.0",
+    "dotenv": "^16.3.1",
+    "cross-env": "^7.0.3",
+    
+    "axios": "^1.6.5",
+    "lodash": "^4.17.21",
+    "moment": "^2.30.1",
+    "slugify": "^1.6.6",
+    "sharp": "^0.33.2",
+    "multer": "^1.4.5-lts.1",
+    
+    "openai": "^4.28.0",
+    "@google/generative-ai": "^0.2.1",
+    "replicate": "^0.25.1",
+    "unsplash-js": "^7.0.19",
+    "pixabay-api": "^1.0.4",
+    "pexels": "^1.4.0",
+    
+    "bree": "^9.1.0",
+    "node-cron": "^3.0.3",
+    "rss-parser": "^3.13.0",
+    "cheerio": "^1.0.0-rc.12",
+    "puppeteer": "^21.7.0",
+    
+    "redis": "^4.6.12",
+    "mongodb": "^6.3.0",
+    
+    "nodemailer": "^6.9.8",
+    "twilio": "^4.20.1",
+    "@sentry/node": "^7.101.1",
+    "winston": "^3.11.0",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@types/express": "^4.17.21",
+    "@types/lodash": "^4.14.202",
+    "@types/moment": "^2.13.0",
+    "@types/multer": "^1.4.11",
+    "@types/nodemailer": "^6.4.14",
+    "@types/morgan": "^1.9.9",
+    "@types/node-cron": "^3.0.11",
+    "@types/jest": "^29.5.11",
+    "@types/supertest": "^6.0.2",
+    
+    "typescript": "^5.3.3",
+    "ts-node": "^10.9.2",
+    "nodemon": "^3.0.3",
+    "eslint": "^8.56.0",
+    "@typescript-eslint/eslint-plugin": "^6.19.1",
+    "@typescript-eslint/parser": "^6.19.1",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.1",
+    "supertest": "^6.3.4",
+    "concurrently": "^8.2.2",
+    "mongodb-memory-server": "^9.1.3"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "keywords": [
+    "payloadcms",
+    "cms",
+    "headless",
+    "ai",
+    "automation",
+    "content-management",
+    "typescript",
+    "mongodb",
+    "windows"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/payloadcms-backend-otomatis.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/payloadcms-backend-otomatis/issues"
+  },
+  "homepage": "https://github.com/yourusername/payloadcms-backend-otomatis#readme"
+}
