@@ -2,14 +2,14 @@ const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
 
-console.log('🚀 Setting up PayloadCMS Backend Otomatis for Windows...');
+console.log('🚀 Setting up PayloadCMS Backend Otomatis v2.32.3...');
 console.log('====================================================');
 
 // Check if Node.js is installed
 try {
   const nodeVersion = process.version;
   console.log(`✅ Node.js version: ${nodeVersion}`);
-  
+
   // Check Node.js version
   const majorVersion = parseInt(nodeVersion.slice(1).split('.')[0]);
   if (majorVersion < 18) {
@@ -63,124 +63,98 @@ directories.forEach(dir => {
   }
 });
 
-// Install dependencies
+// Install dependencies step by step
 console.log('📦 Installing dependencies...');
+
+// First, install core dependencies
 try {
-  execSync('npm install', { stdio: 'inherit' });
-  console.log('✅ Dependencies installed successfully');
+  console.log('📦 Installing core dependencies...');
+  execSync('npm install payload@^2.32.3 express mongoose dotenv', { stdio: 'inherit' });
+  console.log('✅ Core dependencies installed');
 } catch (error) {
-  console.error('❌ Failed to install dependencies:', error.message);
+  console.error('❌ Failed to install core dependencies:', error.message);
   process.exit(1);
 }
 
-// Install Plugin Wajib
-console.log('🔧 Installing Plugin Wajib...');
+// Install utilities
 try {
-  execSync('npm install payload-enchants payload-tools', { stdio: 'inherit' });
-  console.log('✅ Plugin wajib installed');
+  console.log('🛠️ Installing utilities...');
+  execSync('npm install axios lodash moment slugify sharp multer cross-env', { stdio: 'inherit' });
+  console.log('✅ Utilities installed');
 } catch (error) {
-  console.error('❌ Failed to install plugin wajib:', error.message);
+  console.error('❌ Failed to install utilities:', error.message);
 }
 
-// Install Plugin Rekomendasi
-console.log('🚀 Installing Plugin Rekomendasi...');
+// Install AI & Image services
 try {
-  execSync('npm install payload-plugin-cloud-storage payload-plugin-seo payload-plugin-cloud payload-plugin-vercel payload-plugin-redis payload-plugin-sentry payload-plugin-slug payload-plugin-richtext-slate payload-plugin-email payload-plugin-webhooks', { stdio: 'inherit' });
-  console.log('✅ Plugin rekomendasi installed');
-} catch (error) {
-  console.error('❌ Failed to install plugin rekomendasi:', error.message);
-}
-
-// Install Plugin UI/UX
-console.log('🎨 Installing Plugin UI/UX...');
-try {
-  execSync('npm install payload-plugin-color-picker payload-plugin-relationship payload-plugin-media-library payload-plugin-tabs', { stdio: 'inherit' });
-  console.log('✅ Plugin UI/UX installed');
-} catch (error) {
-  console.error('❌ Failed to install plugin UI/UX:', error.message);
-}
-
-// Install Plugin Development
-if (process.env.NODE_ENV !== 'production') {
-  console.log('🔧 Installing Plugin Development...');
-  try {
-    execSync('npm install --save-dev payload-plugin-debug payload-plugin-testing payload-plugin-migrate', { stdio: 'inherit' });
-    console.log('✅ Plugin development installed');
-  } catch (error) {
-    console.error('❌ Failed to install plugin development:', error.message);
-  }
-}
-
-// Install AI & Image Integration
-console.log('🤖 Installing AI & Image Integration...');
-try {
+  console.log('🤖 Installing AI & Image services...');
   execSync('npm install openai @google/generative-ai replicate unsplash-js pixabay-api pexels', { stdio: 'inherit' });
-  console.log('✅ AI & Image integration installed');
+  console.log('✅ AI & Image services installed');
 } catch (error) {
-  console.error('❌ Failed to install AI & Image integration:', error.message);
+  console.error('❌ Failed to install AI & Image services:', error.message);
 }
 
-// Install Cron Jobs & Scheduling
-console.log('⏱️ Installing Cron Jobs & Scheduling...');
+// Install cron jobs
 try {
+  console.log('⏱️ Installing cron jobs...');
   execSync('npm install bree node-cron', { stdio: 'inherit' });
   console.log('✅ Cron jobs installed');
 } catch (error) {
   console.error('❌ Failed to install cron jobs:', error.message);
 }
 
-// Install RSS & Scraping
-console.log('📰 Installing RSS & Scraping...');
+// Install RSS & scraping
 try {
+  console.log('📰 Installing RSS & scraping...');
   execSync('npm install rss-parser cheerio puppeteer', { stdio: 'inherit' });
-  console.log('✅ RSS & Scraping installed');
+  console.log('✅ RSS & scraping installed');
 } catch (error) {
-  console.error('❌ Failed to install RSS & Scraping:', error.message);
+  console.error('❌ Failed to install RSS & scraping:', error.message);
 }
 
-// Install Database & Cache
-console.log('💾 Installing Database & Cache...');
+// Install database & cache
 try {
+  console.log('💾 Installing database & cache...');
   execSync('npm install redis mongodb', { stdio: 'inherit' });
-  console.log('✅ Database & Cache installed');
+  console.log('✅ Database & cache installed');
 } catch (error) {
-  console.error('❌ Failed to install Database & Cache:', error.message);
+  console.error('❌ Failed to install database & cache:', error.message);
 }
 
-// Install Utilities
-console.log('🛠️ Installing Utilities...');
+// Install email & notifications
 try {
-  execSync('npm install axios lodash moment slugify sharp multer cross-env', { stdio: 'inherit' });
-  console.log('✅ Utilities installed');
-} catch (error) {
-  console.error('❌ Failed to install Utilities:', error.message);
-}
-
-// Install Email & Notifications
-console.log('📧 Installing Email & Notifications...');
-try {
+  console.log('📧 Installing email & notifications...');
   execSync('npm install nodemailer twilio', { stdio: 'inherit' });
-  console.log('✅ Email & Notifications installed');
+  console.log('✅ Email & notifications installed');
 } catch (error) {
-  console.error('❌ Failed to install Email & Notifications:', error.message);
+  console.error('❌ Failed to install email & notifications:', error.message);
 }
 
-// Install Monitoring & Logging
-console.log('📊 Installing Monitoring & Logging...');
+// Install monitoring & logging
 try {
+  console.log('📊 Installing monitoring & logging...');
   execSync('npm install @sentry/node winston morgan', { stdio: 'inherit' });
-  console.log('✅ Monitoring & Logging installed');
+  console.log('✅ Monitoring & logging installed');
 } catch (error) {
-  console.error('❌ Failed to install Monitoring & Logging:', error.message);
+  console.error('❌ Failed to install monitoring & logging:', error.message);
 }
 
-// Install Development Dependencies
-console.log('🔧 Installing Development Dependencies...');
+// Install PayloadCMS plugins (optional - skip if errors)
 try {
-  execSync('npm install --save-dev @types/node @types/express @types/lodash @types/moment @types/multer @types/nodemailer @types/morgan @types/node-cron @types/jest typescript ts-node nodemon eslint @typescript-eslint/eslint-plugin @typescript-eslint/parser jest ts-jest supertest @types/supertest concurrently', { stdio: 'inherit' });
-  console.log('✅ Development Dependencies installed');
+  console.log('🔌 Installing PayloadCMS plugins...');
+  execSync('npm install payload-enchants payload-tools', { stdio: 'inherit' });
+  console.log('✅ PayloadCMS plugins installed');
 } catch (error) {
-  console.error('❌ Failed to install Development Dependencies:', error.message);
+  console.warn('⚠️  Some PayloadCMS plugins failed to install (this is normal if plugins are not available)');
+}
+
+// Install development dependencies
+try {
+  console.log('🔧 Installing development dependencies...');
+  execSync('npm install --save-dev @types/node @types/express @types/lodash @types/moment @types/multer @types/nodemailer @types/morgan @types/node-cron @types/jest typescript ts-node nodemon eslint @typescript-eslint/eslint-plugin @typescript-eslint/parser jest ts-jest supertest @types/supertest concurrently mongodb-memory-server', { stdio: 'inherit' });
+  console.log('✅ Development dependencies installed');
+} catch (error) {
+  console.error('❌ Failed to install development dependencies:', error.message);
 }
 
 // Setup environment file
@@ -220,20 +194,15 @@ if (!fs.existsSync(tsconfigPath)) {
       "isolatedModules": true,
       "jsx": "preserve",
       "incremental": true,
-      "plugins": [
-        {
-          "name": "next"
-        }
-      ],
       "baseUrl": ".",
       "paths": {
         "@/*": ["./src/*"]
       }
     },
-    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-    "exclude": ["node_modules"]
+    "include": ["**/*.ts", "**/*.tsx"],
+    "exclude": ["node_modules", "dist"]
   };
-  
+
   try {
     fs.writeFileSync(tsconfigPath, JSON.stringify(tsconfig, null, 2));
     console.log('✅ tsconfig.json created');
@@ -248,7 +217,6 @@ if (!fs.existsSync(eslintPath)) {
   console.log('📝 Creating .eslintrc.js...');
   const eslintConfig = `module.exports = {
   extends: [
-    'next/core-web-vitals',
     '@typescript-eslint/recommended',
   ],
   parser: '@typescript-eslint/parser',
@@ -257,8 +225,12 @@ if (!fs.existsSync(eslintPath)) {
     '@typescript-eslint/no-unused-vars': 'error',
     '@typescript-eslint/no-explicit-any': 'warn',
   },
+  env: {
+    node: true,
+    es6: true,
+  },
 };`;
-  
+
   try {
     fs.writeFileSync(eslintPath, eslintConfig);
     console.log('✅ .eslintrc.js created');
@@ -286,7 +258,7 @@ if (!fs.existsSync(jestPath)) {
   coverageDirectory: 'coverage',
   coverageReporters: ['text', 'lcov', 'html'],
 };`;
-  
+
   try {
     fs.writeFileSync(jestPath, jestConfig);
     console.log('✅ jest.config.js created');
@@ -311,7 +283,7 @@ if (!fs.existsSync(breePath)) {
     },
   },
 };`;
-  
+
   try {
     fs.writeFileSync(breePath, breeConfig);
     console.log('✅ bree.config.js created');
@@ -443,7 +415,7 @@ test-results.xml
 *.tmp
 *.temp
 desktop.ini`;
-  
+
   try {
     fs.writeFileSync(gitignorePath, gitignore);
     console.log('✅ .gitignore created');
