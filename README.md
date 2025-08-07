@@ -1,202 +1,120 @@
 # 🚀 PayloadCMS Backend Otomatis
 
-Backend CMS headless dengan integrasi AI, otomatisasi konten, dan plugin lengkap untuk mengelola konten secara otomatis.
+Backend CMS headless otomatis dengan integrasi AI, RSS, dan plugin lengkap untuk Windows.
 
-## 📋 Fitur Utama
+## ✨ Fitur Utama
 
 - 🤖 **AI Integration**: OpenAI, Gemini, Claude, Ollama
-- 🖼 **Image Automation**: Unsplash, Pixabay, Pexels, AI Image Generation
-- ⚙️ **Cron Jobs**: Bree.js untuk otomatisasi konten
-- 📦 **Plugin Lengkap**: Import/export, SEO, cloud storage, monitoring
-- 🔄 **Content Workflow**: Raw content → Review → Publish
-- 🌐 **Headless CMS**: API-first untuk frontend modern
+- 📰 **RSS Automation**: Fetch konten otomatis dari RSS feeds
+- 🖼️ **Image Services**: Unsplash, Pixabay, Pexels, AI Image Generation
+- ⏱️ **Cron Jobs**: Bree.js untuk scheduling otomatis
+- 🔧 **17 Plugin**: Enchants, Tools, SEO, Cloud Storage, dll
+- 📊 **Monitoring**: Sentry, Winston logging
+- 🎯 **SEO Ready**: Meta tags, sitemap, optimization
+- 📱 **Responsive Admin**: Modern UI/UX
 
-## 🎯 Plugin yang Diintegrasikan
+## 🛠️ Tech Stack
 
-### Plugin Wajib ✅
-- `payload-enchants` - Import/export, duplikat, sorting
-- `payload-tools` - CLI backup/export
+| Komponen | Teknologi |
+|----------|-----------|
+| **CMS** | PayloadCMS 2.10+ |
+| **Database** | MongoDB 6.0+ |
+| **AI** | OpenAI, Gemini, Claude, Ollama |
+| **Images** | Unsplash, Pixabay, Pexels, Replicate |
+| **Scheduler** | Bree.js |
+| **Language** | TypeScript |
+| **OS** | Windows 10/11 |
 
-### Plugin Rekomendasi 🚀
-- `payload-plugin-seo` - SEO meta fields otomatis
-- `payload-plugin-cloud-storage` - Upload ke cloud storage
-- `payload-plugin-redis` - Cache dengan Redis
-- `payload-plugin-sentry` - Error tracking & monitoring
-- `payload-plugin-slug` - Auto-generate slug
-- `payload-plugin-richtext-slate` - Rich text editor advanced
-- `payload-plugin-email` - Email notifications
-- `payload-plugin-webhooks` - Integrasi eksternal
+## 🚀 Quick Start (Windows)
 
-### Plugin UI/UX 🎨
-- `payload-plugin-color-picker` - Color picker field
-- `payload-plugin-relationship` - Enhanced relationship fields
-- `payload-plugin-media-library` - Media library advanced
-- `payload-plugin-tabs` - Tab interface untuk fields
+### Prerequisites
 
-## 🛠️ Instalasi
+- ✅ Node.js 18+ ([Download](https://nodejs.org/))
+- ✅ npm 8+ (included with Node.js)
+- ✅ MongoDB ([Download](https://www.mongodb.com/try/download/community))
+- ✅ Git ([Download](https://git-scm.com/))
 
-### 1. Clone Repository
+### Installation
+
+1. **Clone repository**
 ```bash
 git clone https://github.com/yourusername/payloadcms-backend-otomatis.git
 cd payloadcms-backend-otomatis
 ```
 
-### 2. Install Dependencies
+2. **Run setup script**
 ```bash
-npm install
+npm run setup
 ```
 
-### 3. Setup Environment Variables
+3. **Configure environment**
 ```bash
-cp .env.example .env
+# Edit .env file with your settings
+notepad .env
 ```
 
-Edit file `.env` dan isi dengan konfigurasi yang sesuai:
-- MongoDB URI
-- API keys untuk AI services
-- Image service credentials
-- Cloud storage configuration
-
-### 4. Install Plugin Wajib
-```bash
-npm install payload-enchants payload-tools
-```
-
-### 5. Install Plugin Rekomendasi
-```bash
-npm install payload-plugin-cloud-storage payload-plugin-seo payload-plugin-cloud payload-plugin-vercel payload-plugin-redis payload-plugin-sentry payload-plugin-slug payload-plugin-richtext-slate payload-plugin-email payload-plugin-webhooks
-```
-
-### 6. Install Plugin UI/UX
-```bash
-npm install payload-plugin-color-picker payload-plugin-relationship payload-plugin-media-library payload-plugin-tabs
-```
-
-### 7. Install Plugin Development (Development Only)
-```bash
-npm install --save-dev payload-plugin-debug payload-plugin-testing payload-plugin-migrate
-```
-
-## 🚀 Menjalankan Aplikasi
-
-### Development
+4. **Start development server**
 ```bash
 npm run dev
 ```
 
-### Production
-```bash
-npm run build
-npm run serve
+5. **Access admin panel**
+```
+http://localhost:3000/admin
 ```
 
-## 📁 Struktur Proyek
+## 📦 Plugin Terintegrasi
 
-```
-payloadcms-backend-otomatis/
-├── src/
-│   ├── collections/          # Koleksi PayloadCMS
-│   ├── jobs/                # Cron jobs (Bree.js)
-│   ├── plugins/             # Custom plugins
-│   ├── services/            # AI & image services
-│   └── payload.config.ts    # Konfigurasi utama
-├── jobs/                    # Cron job files
-├── docs/                    # Dokumentasi
-├── tests/                   # Unit tests
-└── package.json
-```
+### 🔧 Plugin Wajib
+- `payload-enchants` - Import/export, duplikat, sorting
+- `payload-tools` - CLI backup/export tools
 
-## 🔧 Konfigurasi Plugin
+### 🚀 Plugin Rekomendasi
+- `payload-plugin-cloud-storage` - S3/GCS/Azure storage
+- `payload-plugin-seo` - SEO optimization
+- `payload-plugin-cloud` - Vercel/Netlify integration
+- `payload-plugin-vercel` - Vercel deployment
+- `payload-plugin-redis` - Redis caching
+- `payload-plugin-sentry` - Error monitoring
+- `payload-plugin-slug` - Auto slug generation
+- `payload-plugin-richtext-slate` - Rich text editor
+- `payload-plugin-email` - Email notifications
+- `payload-plugin-webhooks` - Webhook integration
 
-### payload-enchants
-```typescript
-enchantsPlugin({
-  collections: ['posts', 'pages', 'rawContents', 'products', 'services'],
-  enableDuplicate: true,
-  enableImport: true,
-  enableExport: true,
-  enableSorting: true,
-  enableBulkActions: true,
-})
-```
+### 🎨 Plugin UI/UX
+- `payload-plugin-color-picker` - Color picker
+- `payload-plugin-relationship` - Enhanced relationships
+- `payload-plugin-media-library` - Media management
+- `payload-plugin-tabs` - Tabbed interfaces
 
-### payload-tools
-```typescript
-toolsPlugin({
-  backup: {
-    enabled: true,
-    schedule: '0 2 * * *', // Daily at 2 AM
-    collections: ['posts', 'pages', 'rawContents'],
-  },
-  export: {
-    enabled: true,
-    collections: ['posts', 'pages', 'rawContents'],
-    format: 'json',
-  },
-})
-```
-
-### payload-plugin-seo
-```typescript
-seoPlugin({
-  collections: ['posts', 'pages', 'products', 'services'],
-  generateTitle: ({ doc }) => `${doc.title} - My Site`,
-  generateDescription: ({ doc }) => doc.excerpt || doc.content?.substring(0, 160),
-  generateKeywords: ({ doc }) => doc.tags?.join(', ') || '',
-  generateImage: ({ doc }) => doc.featuredImage?.url || '',
-})
-```
+### 🔧 Plugin Development
+- `payload-plugin-debug` - Debug tools
+- `payload-plugin-testing` - Testing utilities
+- `payload-plugin-migrate` - Database migrations
 
 ## 🤖 AI Integration
 
 ### OpenAI
 ```typescript
-import OpenAI from 'openai';
+import openaiService from './src/services/openaiService';
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
-
-// Generate content
-const completion = await openai.chat.completions.create({
-  model: "gpt-3.5-turbo",
-  messages: [{ role: "user", content: "Write a blog post about..." }],
+// Generate article
+const result = await openaiService.generateArticle('AI Technology', {
+  tone: 'professional',
+  length: 'medium',
+  language: 'English'
 });
 ```
 
-### Gemini (via proxy)
+### Image Services
 ```typescript
-import { GoogleGenerativeAI } from '@google/generative-ai';
+import unsplashService from './src/services/unsplashService';
 
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-const model = genAI.getGenerativeModel({ model: "gemini-pro" });
-
-const result = await model.generateContent("Write a blog post about...");
-```
-
-## 📷 Image Services
-
-### Unsplash
-```typescript
-import { createApi } from 'unsplash-js';
-
-const unsplash = createApi({
-  accessKey: process.env.UNSPLASH_ACCESS_KEY,
-});
-
-const result = await unsplash.search.getPhotos({
-  query: 'nature',
-  page: 1,
+// Search images
+const photos = await unsplashService.searchPhotos('technology', {
   perPage: 10,
+  orientation: 'landscape'
 });
-```
-
-### Pixabay
-```typescript
-import PixabayApi from 'pixabay-api';
-
-const pixabay = new PixabayApi(process.env.PIXABAY_API_KEY);
-const result = await pixabay.query('nature');
 ```
 
 ## ⏱️ Cron Jobs
@@ -206,7 +124,6 @@ const result = await pixabay.query('nature');
 // jobs/rssFetcher.ts
 export default async function rssFetcher() {
   // Fetch RSS feeds and save to rawContents
-  console.log('Fetching RSS feeds...');
 }
 ```
 
@@ -214,23 +131,113 @@ export default async function rssFetcher() {
 ```typescript
 // jobs/aiContentGenerator.ts
 export default async function aiContentGenerator() {
-  // Generate content using AI and save to rawContents
-  console.log('Generating AI content...');
+  // Generate content using AI prompts
 }
 ```
 
-## 🔐 Environment Variables
+### Publish Scheduler
+```typescript
+// jobs/publishScheduler.ts
+export default async function publishScheduler() {
+  // Publish reviewed content
+}
+```
 
-Lihat file `.env.example` untuk daftar lengkap variabel lingkungan yang diperlukan.
+## 📁 Project Structure
 
-## 📚 Dokumentasi Lengkap
+```
+payloadcms-backend-otomatis/
+├── src/
+│   ├── collections/          # PayloadCMS collections
+│   ├── services/            # AI & external services
+│   ├── jobs/               # Cron job handlers
+│   ├── utils/              # Utility functions
+│   ├── types/              # TypeScript types
+│   └── payload.config.ts   # PayloadCMS config
+├── jobs/                   # Bree.js cron jobs
+├── tests/                  # Test files
+├── docs/                   # Documentation
+├── scripts/                # Setup scripts
+└── public/                 # Static files
+```
 
-Lihat file `PAYLOADCMS_BACKEND_DOKUMENTASI.md` untuk dokumentasi lengkap dengan:
-- Struktur koleksi detail
-- Alur otomatisasi konten
-- Konfigurasi plugin lengkap
-- API endpoints
-- Deployment guide
+## 🔧 Available Commands
+
+```bash
+# Development
+npm run dev              # Start development server
+npm run build            # Build for production
+npm run serve            # Start production server
+
+# Database
+npm run migrate          # Run migrations
+npm run migrate:create   # Create migration
+npm run migrate:reset    # Reset database
+
+# Testing
+npm test                 # Run tests
+npm run test:watch       # Watch mode
+npm run test:coverage    # Coverage report
+
+# Code Quality
+npm run lint             # Run linter
+npm run lint:fix         # Fix linting issues
+npm run typecheck        # TypeScript check
+
+# Setup
+npm run setup            # Initial setup
+```
+
+## 🌍 Environment Variables
+
+```env
+# PayloadCMS Core
+PAYLOAD_SECRET=your-secret-key
+PAYLOAD_PUBLIC_SERVER_URL=http://localhost:3000
+MONGODB_URI=mongodb://localhost:27017/payloadcms
+
+# AI Integration
+OPENAI_API_KEY=sk-your-openai-key
+GEMINI_API_KEY=your-gemini-key
+CLAUDE_API_KEY=your-claude-key
+
+# Image Services
+UNSPLASH_ACCESS_KEY=your-unsplash-key
+PIXABAY_API_KEY=your-pixabay-key
+PEXELS_API_KEY=your-pexels-key
+
+# Cloud Storage
+S3_BUCKET=your-bucket
+S3_REGION=us-east-1
+S3_ACCESS_KEY_ID=your-access-key
+S3_SECRET_ACCESS_KEY=your-secret-key
+
+# Monitoring
+SENTRY_DSN=your-sentry-dsn
+```
+
+## 🚀 Deployment
+
+### Railway
+```bash
+# Deploy to Railway
+railway login
+railway init
+railway up
+```
+
+### Vercel
+```bash
+# Deploy to Vercel
+vercel --prod
+```
+
+### Windows VPS
+```bash
+# Build and start
+npm run build
+npm run serve
+```
 
 ## 🧪 Testing
 
@@ -238,55 +245,53 @@ Lihat file `PAYLOADCMS_BACKEND_DOKUMENTASI.md` untuk dokumentasi lengkap dengan:
 # Run all tests
 npm test
 
-# Run tests in watch mode
-npm run test:watch
-
 # Run specific test
-npm test -- --testNamePattern="AI Integration"
+npm test -- --testNamePattern="AI Service"
+
+# Coverage report
+npm run test:coverage
 ```
 
-## 🚀 Deployment
+## 📊 Monitoring
 
-### Railway
-1. Connect repository ke Railway
-2. Set environment variables
-3. Deploy otomatis
+- **Sentry**: Error tracking and performance monitoring
+- **Winston**: Structured logging
+- **Morgan**: HTTP request logging
+- **Redis**: Caching and session storage
 
-### Vercel
-1. Install Vercel CLI
-2. Run `vercel --prod`
-3. Set environment variables di dashboard
+## 🔒 Security
 
-### VPS
-1. Setup Node.js dan MongoDB
-2. Install PM2: `npm install -g pm2`
-3. Deploy: `pm2 start ecosystem.config.js`
+- CORS configuration
+- Rate limiting
+- Input validation
+- SQL injection protection
+- XSS protection
+- CSRF protection
+
+## 📚 Documentation
+
+- [Complete Documentation](./PAYLOADCMS_BACKEND_DOKUMENTASI.md)
+- [Plugin Guide](./docs/PLUGIN_GUIDE.md)
+- [Project Structure](./PROJECT_STRUCTURE.md)
 
 ## 🤝 Contributing
 
-1. Fork repository
-2. Create feature branch: `git checkout -b feature/amazing-feature`
-3. Commit changes: `git commit -m 'Add amazing feature'`
-4. Push branch: `git push origin feature/amazing-feature`
-5. Open Pull Request
+1. Fork the repository
+2. Create feature branch
+3. Make changes
+4. Run tests
+5. Submit pull request
 
 ## 📄 License
 
-Distributed under the MIT License. See `LICENSE` for more information.
+MIT License - see [LICENSE](LICENSE) file
 
-## 📞 Support
+## 🆘 Support
 
 - 📧 Email: support@yoursite.com
-- 💬 Discord: [Join our server](https://discord.gg/yourserver)
-- 📖 Documentation: [Read docs](https://docs.yoursite.com)
-
-## 🙏 Acknowledgments
-
-- [PayloadCMS](https://payloadcms.com/) - Headless CMS
-- [Bree.js](https://jobscheduler.net/) - Job scheduler
-- [Unsplash](https://unsplash.com/) - Free images
-- [OpenAI](https://openai.com/) - AI services
+- 💬 Discord: [Join Server](https://discord.gg/yourserver)
+- 📖 Docs: [Documentation](https://docs.yoursite.com)
 
 ---
 
-**Made with ❤️ by [Your Name]**
+**Made with ❤️ for Windows developers**

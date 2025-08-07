@@ -37,6 +37,8 @@ import { Images } from './collections/Images';
 import { Feeds } from './collections/Feeds';
 import { ScrapeSources } from './collections/ScrapeSources';
 import { AiPrompts } from './collections/AiPrompts';
+import { Categories } from './collections/Categories';
+import { Tags } from './collections/Tags';
 
 export default buildConfig({
   serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL || 'http://localhost:3000',
@@ -46,6 +48,19 @@ export default buildConfig({
       titleSuffix: '- PayloadCMS Backend Otomatis',
       favicon: '/favicon.ico',
       ogImage: '/og-image.jpg',
+    },
+    bundler: {
+      // Use webpack for Windows compatibility
+      webpack: (config) => {
+        // Windows-specific webpack configuration
+        config.resolve.fallback = {
+          ...config.resolve.fallback,
+          fs: false,
+          path: require.resolve('path-browserify'),
+          os: require.resolve('os-browserify/browser'),
+        };
+        return config;
+      },
     },
   },
   collections: [
@@ -59,6 +74,8 @@ export default buildConfig({
     Feeds,
     ScrapeSources,
     AiPrompts,
+    Categories,
+    Tags,
   ],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
@@ -277,6 +294,11 @@ export default buildConfig({
     limits: {
       fileSize: 5000000, // 5MB
     },
+    // Windows-compatible file handling
+    fileFilter: (req, file, cb) => {
+      // Allow all file types for now
+      cb(null, true);
+    },
   },
   rateLimit: {
     max: 1000,
@@ -289,5 +311,31 @@ export default buildConfig({
     postMiddleware: [
       // Add custom middleware here
     ],
+  },
+  // Windows-specific configuration
+  db: {
+    mongoURL: process.env.MONGODB_URI,
+    // Windows MongoDB connection options
+    mongoOptions: {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      // Windows-specific options
+      serverSelectionTimeoutMS: 5000,
+      socketTimeoutMS: 45000,
+      bufferMaxEntries: 0,
+    },
+  },
+  // File upload configuration for Windows
+  upload: {
+    limits: {
+      fileSize: 5000000, // 5MB
+    },
+    // Windows path handling
+    staticDir: path.resolve(__dirname, '../public/media'),
+    // Windows-compatible file naming
+    filename: (req, file, cb) => {
+      const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+      cb(null, file.fieldname + '-' + uniqueSuffix + path.extname(file.originalname));
+    },
   },
 });
